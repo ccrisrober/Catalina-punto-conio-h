@@ -6,7 +6,6 @@ import Dependencies.PR1.Symbols.VT;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 public class Production {
 
@@ -77,8 +76,8 @@ public class Production {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.antecedente);
-        hash = 23 * hash + Objects.hashCode(this.consecuente);
+        hash = 23 * hash + this.antecedente.hashCode();
+        hash = 23 * hash + this.consecuente.hashCode();
         return hash;
     }
 

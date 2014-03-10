@@ -1,7 +1,6 @@
 package Dependencies.PR3;
 
 import Dependencies.PR1.Symbols.VT;
-import java.util.Objects;
 
 public class Token extends VT {
 
@@ -65,8 +64,8 @@ public class Token extends VT {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.lexema);
-        hash = 79 * hash + Objects.hashCode(this.contenido);
+        hash = 79 * hash + this.lexema.hashCode();
+        hash = 79 * hash + this.contenido.hashCode();
         return hash;
     }
 }
