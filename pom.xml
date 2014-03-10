@@ -10,7 +10,7 @@
   <name>mavenproject8</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -23,8 +23,7 @@
     </dependency>
   </dependencies>
   
-  
-  <!--<reporting>
+<reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -55,22 +54,18 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>2.5.2</version>
         <configuration>
+            <!--
+Enables analysis which takes more memory but finds more bugs.
+If you run out of memory, changes the value of the effort element
+to 'low'.
+-->
             <effort>Max</effort>
+            <!-- Reports all bugs (other values are medium and max) -->
             <threshold>Low</threshold>
+            <!-- Produces XML report -->
             <xmlOutput>true</xmlOutput>
         </configuration>
       </plugin>
-      
-      
-
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>sonar-maven-plugin</artifactId>
-        <version>2.0</version>
-      </plugin>
-
-
         
     </plugins>
   </reporting>
@@ -83,6 +78,6 @@
         <version>3.0.1</version>
       </plugin>
     </plugins>
-  </build>-->
+  </build>
 
 </project>
