@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.mycompany</groupId>
-  <artifactId>mavenproject8</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <groupId>com.uerrejotace</groupId>
+  <artifactId>mavenMasterMind</artifactId>
+  <version>1.69</version>
   <packaging>jar</packaging>
 
-  <name>mavenproject8</name>
+  <name>mavenMasterMind</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -22,4 +22,45 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.0.1</version>
+      </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>2.11</version>
+          <reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle</report>
+              </reports>
+            </reportSet>
+          </reportSets>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>2.6</version>
+        </plugin>
+    </plugins>
+  </reporting>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.0.1</version>
+      </plugin>
+    </plugins>
+  </build>
+    <description>Proyecto en Maven de un MasterMind (Lingo) utilizado para el segundo sprint
+de Calidad Software.
+
+Probaremos PMD, CPD y CheckStyle sobre este proyecto.</description>
 </project>
