@@ -274,9 +274,9 @@ public class LexicalAnalyzer {
                     ConcatenarCaracter(tokenLectura);
                     tokenLectura = LeerSiguienteCaracter();
                     // Transiciones desde el estado 20
-                    if ((tokenLectura.compareTo("+") == 0) ||
-                            (tokenLectura.compareTo("-") == 0) ||
-                            (Pattern.compile(N).matcher(tokenLectura)).matches()) {
+                    if (tokenLectura.compareTo("+") == 0 ||
+                            tokenLectura.compareTo("-") == 0 ||
+                            Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 21;
                     }
                     break;

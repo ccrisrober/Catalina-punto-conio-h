@@ -71,7 +71,8 @@ public class Production {
                 }
             }
         }
-        return this.getAntecedente().equals(p.getAntecedente()) && consecuentesIguales;
+        return this.getAntecedente().equals(p.getAntecedente()) 
+                && consecuentesIguales;
     }
 
     @Override

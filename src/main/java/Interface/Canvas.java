@@ -30,11 +30,6 @@ public class Canvas extends JPanel {
         instrucciones = new ArrayList<Token>();
     }
 
-    public Canvas(List<Token> instr) {
-        super();
-        setPreferredSize(new Dimension(320, 240));
-    }
-
     @Override
     public void paint(Graphics g) {
         super.paint(g);

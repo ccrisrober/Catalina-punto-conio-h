@@ -6,7 +6,6 @@ import Dependencies.PR1.Grammar;
 import Dependencies.PR3.Token;
 import Exceptions.Lexical.LexicalException;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -39,7 +38,7 @@ public class Window extends JFrame {
     private JButton b1;
     public static JLabel labelAnalizar;
     private Canvas lienzo;
-    private JScrollPane scrollPaneLienzo;
+    //private JScrollPane scrollPaneLienzo;
     private JScrollPane scrollPaneTextArea;
     private JTextArea textArea;
     private JLabel labelError;
@@ -68,14 +67,14 @@ public class Window extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        fondo.setBackground(new java.awt.Color(0, 0, 0));
+        fondo.setBackground(new Color(0, 0, 0));
 
         b1.setText("Ejecuta");
         b1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    b1ActionPerformed(evt);
+                    b1ActionPerformed();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(new Window(), "Comprueba que eres administrador del sistema.\nEn caso de no poder arreglarse,\ncopia los ficheros 'Gramatica_Logo.txt' y 'Palabras reservadas.txt' en el disco C:" + File.separator + "  ", "Error E/S", JOptionPane.ERROR_MESSAGE);
                 }
@@ -86,11 +85,11 @@ public class Window extends JFrame {
         textArea.setRows(5);
         scrollPaneTextArea.setViewportView(textArea);
 
-        panelExterno.setBackground(new java.awt.Color(153, 153, 153));
+        panelExterno.setBackground(new Color(153, 153, 153));
         panelExterno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelExterno.setPreferredSize(new java.awt.Dimension(320, 240));
 
-        lienzo.setBackground(new java.awt.Color(153, 153, 153));
+        lienzo.setBackground(new Color(153, 153, 153));
 
         javax.swing.GroupLayout lienzoLayout = new javax.swing.GroupLayout(lienzo);
         lienzo.setLayout(lienzoLayout);
@@ -118,15 +117,15 @@ public class Window extends JFrame {
 
         miembros.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         miembros.setText("Trabajo realizado por Cristian Rodríguez y Juan Guerrero (GII + GIS)");
-        miembros.setForeground(new java.awt.Color(255, 255, 255));
+        miembros.setForeground(new Color(255, 255, 255));
 
         labelAnalizar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelAnalizar.setText(" ----- ");
-        labelAnalizar.setForeground(new java.awt.Color(255, 255, 255));
+        labelAnalizar.setForeground(new Color(255, 255, 255));
 
         labelError.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelError.setText("Consola:");
-        labelError.setForeground(new java.awt.Color(255, 255, 255));
+        labelError.setForeground(new Color(255, 255, 255));
 
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
@@ -181,8 +180,8 @@ public class Window extends JFrame {
         pack();
     }// </editor-fold>
 
-    private void b1ActionPerformed(ActionEvent evt) throws IOException {
-        Grammar g = new Grammar("src" + File.separator + "Gramatica_Logo.txt");
+    private void b1ActionPerformed() throws IOException {
+        //Grammar g = new Grammar("src" + File.separator + "Gramatica_Logo.txt");
         String cadenaString = textArea.getText();
         StringTokenizer st = new StringTokenizer(cadenaString, "\n");
         String aux = "";

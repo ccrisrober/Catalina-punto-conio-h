@@ -141,7 +141,7 @@ public class FileReader {
         return toReturn;
     }
 
-    private boolean esTerminal(String simb, Collection<VT> listaVT) {
+    private final boolean esTerminal(String simb, Collection<VT> listaVT) {
         VT v = new VT(simb);
         return listaVT.contains(v);//!(Character.isUpperCase(simb));
     }
