@@ -71,7 +71,7 @@ public class Production {
                 }
             }
         }
-        return ((this.getAntecedente().equals(p.getAntecedente())) && consecuentesIguales);
+        return this.getAntecedente().equals(p.getAntecedente()) && consecuentesIguales;
     }
 
     @Override
@@ -104,7 +104,6 @@ public class Production {
     }
 
     public boolean consecuentesIguales(Collection<V> col) {
-        boolean iguales = false;
         List<V> interno = (List<V>) consecuente;
         List<V> externo = (List<V>) col;
         for (int i = 0; i < interno.size(); i++) {

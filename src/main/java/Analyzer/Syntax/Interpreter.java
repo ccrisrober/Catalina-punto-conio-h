@@ -139,8 +139,8 @@ public class Interpreter {
 
     void irSiguienteLinea() {
         boolean encontrado = false;
-        while ((this.listaTokens.size() > posicion) && !encontrado) {
-            if ((this.listaTokens.get(posicion).equals(new Token("TK_FIN_SENT", "$")))) {
+        while (this.listaTokens.size() > posicion && !encontrado) {
+            if (this.listaTokens.get(posicion).equals(new Token("TK_FIN_SENT", "$"))) {
                 encontrado = true;
                 leerSiguienteToken();
                 break;

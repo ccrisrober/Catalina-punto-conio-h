@@ -59,8 +59,8 @@ public class Token extends VT {
         } catch (ClassCastException e) {
             System.err.println("Error de casteo.");
         }
-        return (this.lexema.compareTo(t.lexema) == 0)
-                && (this.contenido.equals(t.contenido));
+        return this.lexema.compareTo(t.lexema) == 0
+                && this.contenido.equals(t.contenido);
     }
 
     @Override

@@ -131,7 +131,7 @@ public class FileReader {
         List<V> toReturn = new ArrayList<V>();
         String[] sp = consecuentes.split(" ");
         for (String c : sp) {
-            if (esTerminal(c, listaVN, listaVT)) {
+            if (esTerminal(c, listaVT)) {
                 VT consecuente = new VT(c + "");
                 toReturn.add(consecuente);
             } else {
@@ -141,7 +141,7 @@ public class FileReader {
         return toReturn;
     }
 
-    private boolean esTerminal(String simb, Collection<VN> listaVN, Collection<VT> listaVT) {
+    private boolean esTerminal(String simb, Collection<VT> listaVT) {
         VT v = new VT(simb);
         return listaVT.contains(v);//!(Character.isUpperCase(simb));
     }
