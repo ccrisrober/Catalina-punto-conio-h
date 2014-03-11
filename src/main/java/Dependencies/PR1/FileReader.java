@@ -115,7 +115,7 @@ public class FileReader {
                 if (!aux.startsWith("//") && aux.length() != 0) {
                     split = aux.split(" -> ");
                     VN antecedente = new VN(split[0]);
-                    List<V> consecuentes = analizarConsecuentes(split[1], listaVN, listaVT);
+                    List<V> consecuentes = analizarConsecuentes(split[1], listaVT);
                     producciones.add(new Production(antecedente, consecuentes));
                 }
             }
@@ -131,7 +131,7 @@ public class FileReader {
 
     }
 
-    private List<V> analizarConsecuentes(String consecuentes, Collection<VN> listaVN, Collection<VT> listaVT) {
+    private List<V> analizarConsecuentes(String consecuentes, Collection<VT> listaVT) {
         List<V> toReturn = new ArrayList<V>();
         String[] sp = consecuentes.split(" ");
         for (String c : sp) {
@@ -194,7 +194,7 @@ public class FileReader {
                 if (!aux.startsWith("//") && aux.length() != 0) {
                     split = aux.split(" ::= ");
                     VN antecedente = new VN(split[0]);
-                    List<V> consecuentes = analizarConsecuentes(split[1], listaVN, listaVT);
+                    List<V> consecuentes = analizarConsecuentes(split[1], listaVT);
                     producciones.add(new Production(antecedente, consecuentes));
                 }
             }

@@ -2,7 +2,6 @@ package Interface;
 
 import Analyzer.Lexical.LexicalAnalyzer;
 import Dependencies.PR1.FileReader;
-import Dependencies.PR1.Grammar;
 import Dependencies.PR3.Token;
 import Exceptions.Lexical.LexicalException;
 import java.awt.Color;
