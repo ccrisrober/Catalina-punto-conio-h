@@ -1,8 +1,16 @@
 package Exceptions.Syntax;
 
+/**
+ *
+ * @author Cristian
+ */
 public class SyntaxException extends RuntimeException {
 
-    public SyntaxException(String string) {
+    /**
+     *
+     * @param string
+     */
+    public SyntaxException(final String string) {
         super(string);
     }
 

@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author Cristian
+ */
 public class Production {
 
     //Atributos.
-    public VN antecedente;
-    public List<V> consecuente;
+    private VN antecedente;
+    private List<V> consecuente;
 
     //Constructores.
     public Production(VN antecedente, List<V> consecuente) {

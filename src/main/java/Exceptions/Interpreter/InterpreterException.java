@@ -1,8 +1,16 @@
 package Exceptions.Interpreter;
 
+/**
+ *
+ * @author Cristian
+ */
 public class InterpreterException extends RuntimeException {
 
-    public InterpreterException(String error) {
+    /**
+     *
+     * @param error
+     */
+    public InterpreterException(final String error) {
         super(error);
     }
 

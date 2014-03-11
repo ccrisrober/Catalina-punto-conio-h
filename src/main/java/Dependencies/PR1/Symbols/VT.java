@@ -3,7 +3,7 @@ package Dependencies.PR1.Symbols;
 /**
  * Símbolo terminal.
  */
-public class VT extends V {
+public class VT extends V implements Cloneable {
 
     //Constructores.
     public VT() {

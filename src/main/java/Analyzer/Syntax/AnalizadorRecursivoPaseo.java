@@ -12,6 +12,10 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author Cristian
+ */
 public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
 
     /**

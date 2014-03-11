@@ -40,8 +40,10 @@ public abstract class V {
 
     @Override
     public boolean equals(Object o) {
-        V simb = new V("") {
-        };
+        if(o == null) {
+            return false;
+        }
+        V simb = new V("") {};
         try {
             simb = (V) o;
         } catch (ClassCastException c) {

@@ -4,6 +4,10 @@ import Dependencies.PR1.Grammar;
 import Dependencies.PR1.Symbols.VT;
 import java.util.Collection;
 
+/**
+ *
+ * @author Cristian
+ */
 public abstract class SyntaxAnalyzer {
 
     protected Grammar g;

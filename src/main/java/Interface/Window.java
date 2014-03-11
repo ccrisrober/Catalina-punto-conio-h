@@ -248,7 +248,7 @@ public class Window extends JFrame {
         });
     }
 
-    protected static void ponerAnalizarFallido(String error) {
+    protected static void ponerAnalizarFallido(final String error) {
         labelAnalizar.setText(error);
         labelAnalizar.setForeground(Color.red);
     }

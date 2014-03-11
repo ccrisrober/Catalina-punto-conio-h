@@ -2,9 +2,17 @@ package Exceptions.Syntax.Extends;
 
 import Exceptions.Syntax.SyntaxException;
 
+/**
+ *
+ * @author Cristian
+ */
 public class ColorException extends SyntaxException {
 
-    public ColorException(String error) {
+    /**
+     *
+     * @param error
+     */
+    public ColorException(final String error) {
         super(error);
     }
 

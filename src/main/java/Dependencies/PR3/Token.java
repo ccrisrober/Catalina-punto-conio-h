@@ -2,6 +2,10 @@ package Dependencies.PR3;
 
 import Dependencies.PR1.Symbols.VT;
 
+/**
+ *
+ * @author Cristian
+ */
 public class Token extends VT {
 
     //Atributos.

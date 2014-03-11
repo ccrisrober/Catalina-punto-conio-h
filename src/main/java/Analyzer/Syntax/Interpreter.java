@@ -15,6 +15,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+/**
+ *
+ * @author Cristian
+ */
 public class Interpreter {
 
     protected Token tokenActual;
@@ -23,7 +27,7 @@ public class Interpreter {
     protected int nLinea;
     protected Turtle t;
     protected Map<Integer, Integer> mapaLineas;
-    private final int MAX = 1000000;
+    private final static int MAX = 1000000;
     protected int nLlamadasRecursivas = MAX;
     protected Map<String, Double> tablaIdentificadores;
     protected String finFichero = "$EOF$";
@@ -346,7 +350,7 @@ public class Interpreter {
             double valor = 0;
             try {
                 if (tokenActual.getContenido() instanceof Integer) {
-                    valor = Double.valueOf(tokenActual.getContenido().toString());
+                    valor = (double)Integer.valueOf(tokenActual.getContenido().toString());
                 } else {  //Suponemos que es double entonces
                     valor = Double.valueOf(tokenActual.getContenido().toString());
                 }

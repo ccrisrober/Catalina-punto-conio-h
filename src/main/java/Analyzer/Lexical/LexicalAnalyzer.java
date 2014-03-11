@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+/**
+ *
+ * @author Cristian
+ */
 public class LexicalAnalyzer {
 
     protected final static String E = "\\+|\\-";
@@ -32,7 +36,7 @@ public class LexicalAnalyzer {
     }
 
     public List<Token> analizarLinea(String linea) {
-        IniLexema();
+        iniLexema();
         lineaCodigo = linea;
         int estado = 0, valor = 0, digito;
         puntero = -1;
@@ -40,10 +44,10 @@ public class LexicalAnalyzer {
             switch (estado) {
                 case 0: {
                     // Acciones semánticas del estado 0
-                    IniLexema();
+                    iniLexema();
                     valor = 0;
 
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
 
                     // Transiciones desde el estado 0
                     if (Pattern.compile(del).matcher(tokenLectura).matches()) {
@@ -81,8 +85,8 @@ public class LexicalAnalyzer {
                 }
                 case 1: {
                     // Acciones semánticas del estado 1 
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 1
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 3;
@@ -95,16 +99,16 @@ public class LexicalAnalyzer {
                 }
                 case 2: {
                     // Acciones semánticas del estado 2 
-                    RetrocesoPuntero();
-                    DiferPRId(DaLexema());
+                    retrocesoPuntero();
+                    diferPRId(daLexema());
                     // Transiciones desde el estado 2
                     estado = 0;
                     break;
                 }
                 case 3: {
                     // Acciones semánticas del estado 3
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 3
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 3;
@@ -117,29 +121,29 @@ public class LexicalAnalyzer {
                 }
                 case 4: {
                     // Acciones semánticas del estado 4 
-                    RetrocesoPuntero();
-                    DaToken("TK_ID", DaLexema());
+                    retrocesoPuntero();
+                    daToken("TK_ID", daLexema());
                     // Transiciones desde el estado 4 
                     estado = 0;
                     break;
                 }
                 case 5: {
                     // Acciones semánticas del estado 5 
-                    DaToken("TK_LLAV_ABR", "{");
+                    daToken("TK_LLAV_ABR", "{");
                     // Transiciones desde el estado 5 
                     estado = 0;
                     break;
                 }
                 case 6: {
                     // Acciones semánticas del estado 6 
-                    DaToken("TK_LLAV_CER", "}");
+                    daToken("TK_LLAV_CER", "}");
                     // Transiciones desde el estado 6 
                     estado = 0;
                     break;
                 }
                 case 7: {
                     // Acciones semánticas del estado 7 
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 7 
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 11;
@@ -150,7 +154,7 @@ public class LexicalAnalyzer {
                 }
                 case 8: {
                     // Acciones semánticas del estado 8 
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 8 
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 12;
@@ -159,14 +163,14 @@ public class LexicalAnalyzer {
                 }
                 case 9: {
                     // Acciones semánticas del estado 9 
-                    DaToken("TK_FIN_SENT", /*";"*/ "$");
+                    daToken("TK_FIN_SENT", /*";"*/ "$");
                     // Transiciones desde el estado 9 
                     estado = 0;
                     break;
                 }
                 case 10: {
                     // Acciones semánticas del estado 10
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 10
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 13;
@@ -179,47 +183,47 @@ public class LexicalAnalyzer {
                 }
                 case 11: {
                     // Acciones semánticas del estado 11 
-                    RetrocesoPuntero();
-                    DaToken("TK_ASIGN", "=");
+                    retrocesoPuntero();
+                    daToken("TK_ASIGN", "=");
                     // Transiciones desde el estado 11 
                     estado = 0;
                     break;
                 }
                 case 12: {
                     // Acciones semánticas del estado 12 
-                    RetrocesoPuntero();
-                    DaToken("TK_MAS", "+");
+                    retrocesoPuntero();
+                    daToken("TK_MAS", "+");
                     // Transiciones desde el estado 12 
                     estado = 0;
                     break;
                 }
                 case 13: {
                     // Acciones semánticas del estado 13 
-                    RetrocesoPuntero();
-                    DaToken("TK_MENOR", "<");
+                    retrocesoPuntero();
+                    daToken("TK_MENOR", "<");
                     // Transiciones desde el estado 13 
                     estado = 0;
                     break;
                 }
                 case 14: {
                     // Acciones semánticas del estado 14 
-                    DaToken("TK_PAR_ABR", "(");
+                    daToken("TK_PAR_ABR", "(");
                     // Transiciones desde el estado 14 
                     estado = 0;
                     break;
                 }
                 case 15: {
                     // Acciones semánticas del estado 15 
-                    DaToken("TK_PAR_CER", ")");
+                    daToken("TK_PAR_CER", ")");
                     // Transiciones desde el estado 15 
                     estado = 0;
                     break;
                 }
                 case 16: {
                     // Acciones semánticas del estado 16
-                    digito = ConvierteNumero(tokenLectura);
+                    digito = convierteNumero(tokenLectura);
                     valor = valor * 10 + digito;
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 16 
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 16;
@@ -233,8 +237,8 @@ public class LexicalAnalyzer {
                 }
                 case 17: {
                     // Acciones semánticas del estado 17
-                    RetrocesoPuntero();
-                    DaToken("TK_CTE_NUM", valor);
+                    retrocesoPuntero();
+                    daToken("TK_CTE_NUM", valor);
                     // Transiciones desde el estado 17
                     estado = 0;
                     break;
@@ -243,8 +247,8 @@ public class LexicalAnalyzer {
 
                 case 18: {
                     // Acciones semánticas del estado 18 
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 18 
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 18;
@@ -259,8 +263,8 @@ public class LexicalAnalyzer {
                 }
                 case 19: {
                     // Acciones semánticas del estado 19
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 19
                     if (tokenLectura.compareToIgnoreCase("E") == 0) {
                         estado = 20;
@@ -271,8 +275,8 @@ public class LexicalAnalyzer {
                 }
                 case 20: {
                     // Acciones semánticas del estado 20 
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 20
                     if (tokenLectura.compareTo("+") == 0 ||
                             tokenLectura.compareTo("-") == 0 ||
@@ -283,8 +287,8 @@ public class LexicalAnalyzer {
                 }
                 case 21: {
                     // Acciones semánticas del estado 21 
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 21 
                     if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
                         estado = 22;
@@ -296,8 +300,8 @@ public class LexicalAnalyzer {
                 }
                 case 22: {
                     // Acciones desde el estado 22
-                    RetrocesoPuntero();
-                    DaToken("TK_NOTCNTF", tokenActual);
+                    retrocesoPuntero();
+                    daToken("TK_NOTCNTF", tokenActual);
                     // Transiciones desde el estado 22
                     estado = 0;
                     break;
@@ -306,8 +310,8 @@ public class LexicalAnalyzer {
                 // COMENTARIOS EN C
                 case 24: {
                     // Acciones semánticas del estado 18 
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 18 
                     if (tokenLectura.compareTo("*") == 0) {
                         estado = 25;
@@ -320,8 +324,8 @@ public class LexicalAnalyzer {
                 }
                 case 25: {
                     // Acciones semánticas del estado 19 
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 19 
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 25;
@@ -334,8 +338,8 @@ public class LexicalAnalyzer {
                 }
                 case 26: {
                     // Acciones semánticas del estado 26
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 26 
                     if (tokenLectura.compareTo("/") == 0) {
                         estado = 27;
@@ -344,7 +348,7 @@ public class LexicalAnalyzer {
                 }
                 case 27: {
                     //Acciones semánticas del estado 27
-                    ConcatenarCaracter(tokenLectura);
+                    concatenarCaracter(tokenLectura);
                     //DaToken("TK_COMENTARIO", tokenActual);
                     //Transiciones semánticas del estado 27
                     estado = 0;
@@ -352,15 +356,15 @@ public class LexicalAnalyzer {
                 }
                 case 29: {
                     //Acciones semánticas del estado 29
-                    ConcatenarCaracter(tokenLectura);
-                    tokenLectura = LeerSiguienteCaracter();
+                    concatenarCaracter(tokenLectura);
+                    tokenLectura = leerSiguienteCaracter();
                     //Transiciones desde el estado 29
                     //estado = 29; //Creo que no hace falta
                     break;
                 }
                 case 30: {
                     // Acciones semánticas del estado 30 
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 30 
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 31;
@@ -369,15 +373,15 @@ public class LexicalAnalyzer {
                 }
                 case 31: {
                     // Acciones semánticas del estado 31 
-                    RetrocesoPuntero();
-                    DaToken("TK_MENOS", "-");
+                    retrocesoPuntero();
+                    daToken("TK_MENOS", "-");
                     // Transiciones desde el estado 31 
                     estado = 0;
                     break;
                 }
                 case 32: {
                     // Acciones semánticas del estado 32
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 32 
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 33;
@@ -386,23 +390,23 @@ public class LexicalAnalyzer {
                 }
                 case 33: {
                     // Acciones semánticas del estado 33 
-                    RetrocesoPuntero();
-                    DaToken("TK_PROD", "*");
+                    retrocesoPuntero();
+                    daToken("TK_PROD", "*");
                     // Transiciones desde el estado 33
                     estado = 0;
                     break;
                 }
                 case 34: {
                     // Acciones semánticas del estado 34 
-                    RetrocesoPuntero();
-                    DaToken("TK_DIV", "/");
+                    retrocesoPuntero();
+                    daToken("TK_DIV", "/");
                     // Transiciones desde el estado 34
                     estado = 0;
                     break;
                 }
                 case 35: {
                     // Acciones semánticas del estado 35
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transicioens desde el estado 35
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 36;
@@ -413,15 +417,15 @@ public class LexicalAnalyzer {
                 }
                 case 36: {
                     // Acciones semánticas del estado 36
-                    RetrocesoPuntero();
-                    DaToken("TK_MAYOR", ">");
+                    retrocesoPuntero();
+                    daToken("TK_MAYOR", ">");
                     // Transiciones desde el estado 36
                     estado = 0;
                     break;
                 }
                 case 37: {
                     // Acciones semánticas del estado 37
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transicioens desde el estado 37
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 38;
@@ -430,15 +434,15 @@ public class LexicalAnalyzer {
                 }
                 case 38: {
                     // Acciones semánticas del estado 38
-                    RetrocesoPuntero();
-                    DaToken("TK_DISTINTO", "<>");
+                    retrocesoPuntero();
+                    daToken("TK_DISTINTO", "<>");
                     // Transiciones desde el estado 38
                     estado = 0;
                     break;
                 }
                 case 39: {
                     // Acciones semánticas del estado 39
-                    tokenLectura = LeerSiguienteCaracter();
+                    tokenLectura = leerSiguienteCaracter();
                     // Transiciones desde el estado 39
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 40;
@@ -446,25 +450,25 @@ public class LexicalAnalyzer {
                 }
                 case 40: {
                     // Acciones semánticas del estado 40 
-                    RetrocesoPuntero();
-                    DaToken("TK_IGUALDAD", "==");
+                    retrocesoPuntero();
+                    daToken("TK_IGUALDAD", "==");
                     // Transiciones desde el estado 40
                     estado = 0;
                     break;
                 }
                 case 41: {
                     // Acciones semánticas del estado 41
-                    ConcatenarCaracter(tokenLectura);
+                    concatenarCaracter(tokenLectura);
                     //RetrocesoPuntero();
-                    DaToken("TK_MAYOR_IGUAL", ">=");
+                    daToken("TK_MAYOR_IGUAL", ">=");
                     estado = 0;
                     break;
                 }
                 case 42: {
                     // Acciones semánticas del estado 42
-                    ConcatenarCaracter(tokenLectura);
+                    concatenarCaracter(tokenLectura);
                     //RetrocesoPuntero();
-                    DaToken("TK_MENOR_IGUAL", "<=");
+                    daToken("TK_MENOR_IGUAL", "<=");
                     estado = 0;
                     break;
                 }
@@ -477,21 +481,21 @@ public class LexicalAnalyzer {
         return listaTokens;
     }
 
-    private void IniLexema() {
+    private void iniLexema() {
         tokenActual = tokenLectura = "";
     }
 
-    private void RetrocesoPuntero() {
+    private void retrocesoPuntero() {
         puntero--;
     }
 
-    private Token DaToken(String lexema, String contenido) {
+    private Token daToken(String lexema, String contenido) {
         Token t = new Token(lexema, contenido);
         listaTokens.add(t);
         return t;
     }
 
-    private Token DaToken(String lexema, int valor) {
+    private Token daToken(String lexema, int valor) {
         Token t = new Token(lexema, valor);
         listaTokens.add(t);
         return t;
@@ -503,11 +507,11 @@ public class LexicalAnalyzer {
      * @param lexema
      * @return true si es palabra reservada, false si es un identificador
      */
-    private void DiferPRId(String lexema) {
-        listaTokens.add(palabrasReservadas.contains(lexema) ? new Token("TK_" + DaLexema().toUpperCase(), lexema) : new Token("TK_ID", lexema));
+    private void diferPRId(String lexema) {
+        listaTokens.add(palabrasReservadas.contains(lexema) ? new Token("TK_" + daLexema().toUpperCase(), lexema) : new Token("TK_ID", lexema));
     }
 
-    private String DaLexema() {
+    private String daLexema() {
         return tokenActual;
     }
 
@@ -515,7 +519,7 @@ public class LexicalAnalyzer {
         palabrasReservadas.addAll(Arrays.asList(s));
     }
 
-    private String LeerSiguienteCaracter() {
+    private String leerSiguienteCaracter() {
         puntero++;
         try {
             return lineaCodigo.charAt(puntero) + "";
@@ -524,11 +528,11 @@ public class LexicalAnalyzer {
         }
     }
 
-    private void ConcatenarCaracter(String tokenLectura) {
+    private void concatenarCaracter(String tokenLectura) {
         tokenActual += tokenLectura;
     }
 
-    private int ConvierteNumero(String cadena) {
+    private int convierteNumero(String cadena) {
         int i = 0;
         try {
             i = Integer.parseInt(cadena);
