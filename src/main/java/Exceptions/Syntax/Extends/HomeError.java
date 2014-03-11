@@ -7,5 +7,5 @@ public class HomeError extends SyntaxException {
     public HomeError(String string) {
         super(string);
     }
-    
+
 }

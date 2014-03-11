@@ -76,8 +76,7 @@ public class Window extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
                     b1ActionPerformed(evt);
-                }
-                catch (IOException ex) {
+                } catch (IOException ex) {
                     JOptionPane.showMessageDialog(new Window(), "Comprueba que eres administrador del sistema.\nEn caso de no poder arreglarse,\ncopia los ficheros 'Gramatica_Logo.txt' y 'Palabras reservadas.txt' en el disco C:" + File.separator + "  ", "Error E/S", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -107,15 +106,15 @@ public class Window extends JFrame {
         panelExternoLayout.setHorizontalGroup(
                 panelExternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelExternoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap()));
+                        .addContainerGap()
+                        .addComponent(lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()));
         panelExternoLayout.setVerticalGroup(
                 panelExternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelExternoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap()));
+                        .addContainerGap()
+                        .addComponent(lienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()));
 
         miembros.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         miembros.setText("Trabajo realizado por Cristian Rodríguez y Juan Guerrero (GII + GIS)");
@@ -134,41 +133,41 @@ public class Window extends JFrame {
         fondoLayout.setHorizontalGroup(
                 fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(fondoLayout.createSequentialGroup()
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(fondoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(scrollPaneTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelExterno, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
-                .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(labelError)
-                .addGap(18, 18, 18)
-                .addComponent(labelAnalizar)
-                .addGap(0, 0, Short.MAX_VALUE))))
-                .addGroup(fondoLayout.createSequentialGroup()
-                .addGap(402, 402, 402)
-                .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(miembros)))
-                .addContainerGap()));
+                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(fondoLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(fondoLayout.createSequentialGroup()
+                                                        .addComponent(scrollPaneTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(panelExterno, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
+                                                .addGroup(fondoLayout.createSequentialGroup()
+                                                        .addComponent(labelError)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(labelAnalizar)
+                                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(fondoLayout.createSequentialGroup()
+                                        .addGap(402, 402, 402)
+                                        .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                        .addComponent(miembros)))
+                        .addContainerGap()));
         fondoLayout.setVerticalGroup(
                 fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(fondoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(b1)
-                .addComponent(miembros))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scrollPaneTextArea, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                .addComponent(panelExterno, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(labelError)
-                .addComponent(labelAnalizar))
-                .addContainerGap()));
+                        .addContainerGap()
+                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(b1)
+                                .addComponent(miembros))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(scrollPaneTextArea, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                                .addComponent(panelExterno, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelError)
+                                .addComponent(labelAnalizar))
+                        .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,30 +192,26 @@ public class Window extends JFrame {
 
         if (aux.length() <= 0) {
             ponerAnalizarFallido("El conjunto de instrucciones está vacío");
-        }
-        else {
+        } else {
             FileReader fr = new FileReader("src" + File.separator + "Palabras reservadas.txt");
 
             String[] palabrasReservadas = null;
             try {
                 palabrasReservadas = fr.palabrasReservadas();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 ponerAnalizarFallido("No se encuentra directorio con palabras reservadas.");
             }
             LexicalAnalyzer al = new LexicalAnalyzer(palabrasReservadas);
             List<Token> listaTokens = null;
             try {
                 listaTokens = al.analizarLinea(aux);
-            }
-            catch (LexicalException el) {
+            } catch (LexicalException el) {
                 ponerAnalizarFallido("Error léxico: " + el.getLocalizedMessage());
                 return;
             }
             if (listaTokens.size() > 0) {
                 this.lienzo.redraw(listaTokens);
-            }
-            else {
+            } else {
                 ponerAnalizarFallido("El conjunto de instrucciones está vacío");
             }
         }
@@ -230,22 +225,19 @@ public class Window extends JFrame {
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        } //</editor-fold>
         catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        } //</editor-fold>
         catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

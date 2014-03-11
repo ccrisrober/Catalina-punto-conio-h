@@ -7,5 +7,5 @@ public class ArithmeticException extends SyntaxException {
     public ArithmeticException(String error) {
         super(error);
     }
-    
+
 }

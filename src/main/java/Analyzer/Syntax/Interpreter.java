@@ -50,7 +50,7 @@ public class Interpreter {
         posicion = 0;
         generarMapaLineas();
         do {
-            if(nLlamadasRecursivas == 0) {
+            if (nLlamadasRecursivas == 0) {
                 throw new InterpreterException("Número de llamadas recursivas demasiado grande.");
             }
             nLinea++;
@@ -58,15 +58,13 @@ public class Interpreter {
                 leerSiguienteToken();
                 mapaLineas.put(nLinea, posicion);
                 PASEO();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 throw new InterpreterException("Línea " + nLinea + ": " + e.getMessage());
             }
             if (!tokenActual.lexemasIguales("TK_FIN_SENT") && !tokenActual.lexemasIguales("TK_SALIDA")) {
                 throw new NewLineException("Encontrado '" + this.devolverErrorMatch(tokenActual.getLexema().substring(3)) + "', esperaba 'salto de línea'.");
             }
-        }
-        while (!tokenActual.lexemasIguales("TK_SALIDA"));
+        } while (!tokenActual.lexemasIguales("TK_SALIDA"));
     }
 
     void PASEO() {
@@ -125,8 +123,7 @@ public class Interpreter {
                 Match(new VT("TK_ENTONCES"));
                 PASO();
                 nLlamadasRecursivas--;
-            }
-            else {
+            } else {
                 irSiguienteLinea();
             }
             return;
@@ -147,8 +144,7 @@ public class Interpreter {
                 encontrado = true;
                 leerSiguienteToken();
                 break;
-            }
-            else {
+            } else {
                 posicion++;
             }
         }
@@ -163,8 +159,7 @@ public class Interpreter {
         boolean salida;
         if (esParentesisAbierto()) {
             salida = COND_PAR();
-        }
-        else {
+        } else {
             salida = COMP();
         }
         return not && salida;
@@ -212,28 +207,23 @@ public class Interpreter {
                 Match(new VT("TK_MAYOR"));
                 double valor2 = E();
                 return valor1 > valor2;
-            }
-            else if (esMenor()) {
+            } else if (esMenor()) {
                 Match(new VT("TK_MENOR"));
                 double valor2 = E();
                 return valor1 < valor2;
-            }
-            else if (esDistinto()) {
+            } else if (esDistinto()) {
                 Match(new VT("TK_DISTINTO"));
                 double valor2 = E();
                 return valor1 != valor2;
-            }
-            else if (esComparacion()) {
+            } else if (esComparacion()) {
                 Match(new VT("TK_IGUALDAD"));
                 double valor2 = E();
                 return valor1 == valor2;
-            }
-            else if (esMayorIgual()) {
+            } else if (esMayorIgual()) {
                 Match(new VT("TK_MAYOR_IGUAL"));
                 double valor2 = E();
                 return valor1 >= valor2;
-            }
-            else if (esMenorIgual()) {
+            } else if (esMenorIgual()) {
                 Match(new VT("TK_MENOR_IGUAL"));
                 double valor2 = E();
                 return valor1 <= valor2;
@@ -347,34 +337,28 @@ public class Interpreter {
             double valor = E();
             Match(new VT("TK_PAR_CER"));
             return valor;
-        }
-        else if (esID()) {
+        } else if (esID()) {
             double valor = devolverTabla((String) tokenActual.getContenido());
             Match(new VT("TK_ID"));
             return valor;
-        }
-        else if (esNumero()) {
+        } else if (esNumero()) {
             double valor = 0;
             try {
                 if (tokenActual.getContenido() instanceof Integer) {
                     valor = Double.valueOf(tokenActual.getContenido().toString());
-                }
-                else {  //Suponemos que es double entonces
+                } else {  //Suponemos que es double entonces
                     valor = Double.valueOf(tokenActual.getContenido().toString());
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 throw new InterpreterException("No es número entero o double");
             }
             Match(new VT("TK_CTE_NUM"));
             return valor;
-        }
-        else if (esNumeroD()) {
+        } else if (esNumeroD()) {
             double valor = Double.parseDouble((String) tokenActual.getContenido());
             Match(new VT("TK_NOTCNTF"));
             return valor;
-        }
-        else if (esMasMenos()) {
+        } else if (esMasMenos()) {
             int simbolo = MAS_MENOS(1);
             double valor = F();
             return valor * simbolo;
@@ -386,8 +370,7 @@ public class Interpreter {
         if (esMas()) {
             Match(new VT("TK_MAS"));
             return +n;
-        }
-        else if (esMenos()) {
+        } else if (esMenos()) {
             Match(new VT("TK_MENOS"));
             return -n;
         }
@@ -399,59 +382,44 @@ public class Interpreter {
             if (posicion != listaTokens.size() - 1) {
                 leerSiguienteToken();
                 return;
-            }
-            else {
+            } else {
                 tokenActual = new Token("TK_SALIDA", finFichero);
                 return;
             }
         }
-        throw new InterpreterException("Esperaba " + "'" + devolverErrorMatch(v.getV().substring(3)) + "'" + ", encontrado " + "'" + devolverErrorMatch((String)tokenActual.getContenido()) + "'.");
+        throw new InterpreterException("Esperaba " + "'" + devolverErrorMatch(v.getV().substring(3)) + "'" + ", encontrado " + "'" + devolverErrorMatch((String) tokenActual.getContenido()) + "'.");
     }
 
     String devolverErrorMatch(String s) {
         if (s.compareToIgnoreCase("$") == 0) {
             s = "Fín de línea";
-        }
-        else if (s.compareToIgnoreCase("PAR_CER") == 0) {
+        } else if (s.compareToIgnoreCase("PAR_CER") == 0) {
             s = ")";
-        }
-        else if (s.compareToIgnoreCase("PAR_ABR") == 0) {
+        } else if (s.compareToIgnoreCase("PAR_ABR") == 0) {
             s = "(";
-        }
-        else if (s.compareToIgnoreCase("MAYOR") == 0) {
+        } else if (s.compareToIgnoreCase("MAYOR") == 0) {
             s = ">";
-        }
-        else if (s.compareToIgnoreCase("MENOR") == 0) {
+        } else if (s.compareToIgnoreCase("MENOR") == 0) {
             s = "<";
-        }
-        else if (s.compareToIgnoreCase("MAYOR_IGUAL") == 0) {
+        } else if (s.compareToIgnoreCase("MAYOR_IGUAL") == 0) {
             s = ">=";
-        }
-        else if (s.compareToIgnoreCase("MENOR_IGUAL") == 0) {
+        } else if (s.compareToIgnoreCase("MENOR_IGUAL") == 0) {
             s = "<=";
-        }
-        else if (s.compareToIgnoreCase("DISTINTO") == 0) {
+        } else if (s.compareToIgnoreCase("DISTINTO") == 0) {
             s = "<>";
-        }
-        else if (s.compareToIgnoreCase("IGUALDAD") == 0) {
+        } else if (s.compareToIgnoreCase("IGUALDAD") == 0) {
             s = "==";
-        }
-        else if (s.compareToIgnoreCase("MAS") == 0) {
+        } else if (s.compareToIgnoreCase("MAS") == 0) {
             s = "+";
-        }
-        else if (s.compareToIgnoreCase("MENOS") == 0) {
+        } else if (s.compareToIgnoreCase("MENOS") == 0) {
             s = "-";
-        }
-        else if (s.compareToIgnoreCase("PROD") == 0) {
+        } else if (s.compareToIgnoreCase("PROD") == 0) {
             s = "*";
-        }
-        else if (s.compareToIgnoreCase("DIV") == 0) {
+        } else if (s.compareToIgnoreCase("DIV") == 0) {
             s = "/";
-        }
-        else if (s.compareToIgnoreCase("ASIGN") == 0) {
+        } else if (s.compareToIgnoreCase("ASIGN") == 0) {
             s = "=";
-        }
-        else if (s.compareToIgnoreCase(finFichero) == 0) {
+        } else if (s.compareToIgnoreCase(finFichero) == 0) {
             s = ".";
         }
         return s;
@@ -463,200 +431,192 @@ public class Interpreter {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Comparaciones">
-    
-        //<editor-fold defaultstate="collapsed" desc="COMPARADORES">
-        boolean esComparador() {
-            return esMayor() || esMenor() || esDistinto() || esComparacion() || esMayorIgual() || esMenorIgual();
-        }
+    //<editor-fold defaultstate="collapsed" desc="COMPARADORES">
+    boolean esComparador() {
+        return esMayor() || esMenor() || esDistinto() || esComparacion() || esMayorIgual() || esMenorIgual();
+    }
 
-        boolean esMenor() {
-            return tokenActual.lexemasIguales("TK_MENOR");
-        }
+    boolean esMenor() {
+        return tokenActual.lexemasIguales("TK_MENOR");
+    }
 
-        boolean esMayor() {
-            return tokenActual.lexemasIguales("TK_MAYOR");
-        }
+    boolean esMayor() {
+        return tokenActual.lexemasIguales("TK_MAYOR");
+    }
 
-        boolean esComparacion() {
-            return tokenActual.lexemasIguales("TK_IGUALDAD");
-        }
+    boolean esComparacion() {
+        return tokenActual.lexemasIguales("TK_IGUALDAD");
+    }
 
-        boolean esDistinto() {
-            return tokenActual.lexemasIguales("TK_DISTINTO");
-        }
+    boolean esDistinto() {
+        return tokenActual.lexemasIguales("TK_DISTINTO");
+    }
 
-        boolean esMayorIgual() {
-            return tokenActual.lexemasIguales("TK_MAYOR_IGUAL");
-        }
+    boolean esMayorIgual() {
+        return tokenActual.lexemasIguales("TK_MAYOR_IGUAL");
+    }
 
-        boolean esMenorIgual() {
-            return tokenActual.lexemasIguales("TK_MENOR_IGUAL");
-        }
-
-        //</editor-fold>
-        
-        //<editor-fold defaultstate="collapsed" desc="Aritmética">
-        boolean esMasMenos() {
-            return esMas() || esMenos();
-        }
-
-        boolean esMas() {
-            return tokenActual.lexemasIguales("TK_MAS");
-        }
-
-        boolean esMenos() {
-            return tokenActual.lexemasIguales("TK_MENOS");
-        }
-
-        boolean esSumaResta() {
-            return esMasMenos();
-        }
-
-        boolean esMultiplicacionDivision() {
-            return esMultiplicacion() || esDivision();
-        }
-
-        boolean esSuma() {
-            return esMas();
-        }
-
-        boolean esResta() {
-            return esMenos();
-        }
-
-        boolean esMultiplicacion() {
-            return tokenActual.lexemasIguales("TK_PROD");
-        }
-
-        boolean esDivision() {
-            return tokenActual.lexemasIguales("TK_DIV");
-        }
+    boolean esMenorIgual() {
+        return tokenActual.lexemasIguales("TK_MENOR_IGUAL");
+    }
 
         //</editor-fold>
-        
-        //<editor-fold defaultstate="collapsed" desc="Expresiones booleanas">
-        boolean esAndOr() {
-            return esAnd() || esOr();
-        }
+    //<editor-fold defaultstate="collapsed" desc="Aritmética">
+    boolean esMasMenos() {
+        return esMas() || esMenos();
+    }
 
-        boolean esNot() {
-            return tokenActual.lexemasIguales("TK_NOT");
-        }
+    boolean esMas() {
+        return tokenActual.lexemasIguales("TK_MAS");
+    }
 
-        boolean esAnd() {
-            return tokenActual.lexemasIguales("TK_AND");
-        }
+    boolean esMenos() {
+        return tokenActual.lexemasIguales("TK_MENOS");
+    }
 
-        boolean esOr() {
-            return tokenActual.lexemasIguales("TK_OR");
-        }
+    boolean esSumaResta() {
+        return esMasMenos();
+    }
 
-        //</editor-fold>
-        
-        //<editor-fold defaultstate="collapsed" desc="PASO">
-        boolean esCasaGiroAvanzaPintaIDColorCondicionalSalto() {
-            return esCasa() || esGiro() || esAvanza() || esPinta() || esID()
-                    || esColor() || esCondicional() || esSalto();
-        }
+    boolean esMultiplicacionDivision() {
+        return esMultiplicacion() || esDivision();
+    }
 
-        boolean esEntonces() {
-            return tokenActual.lexemasIguales("TK_ENTONCES");
-        }
+    boolean esSuma() {
+        return esMas();
+    }
 
-        boolean esCasa() {
-            return tokenActual.lexemasIguales("TK_CASA");
-        }
+    boolean esResta() {
+        return esMenos();
+    }
 
-        boolean esGiro() {
-            return tokenActual.lexemasIguales("TK_GIRO");
-        }
+    boolean esMultiplicacion() {
+        return tokenActual.lexemasIguales("TK_PROD");
+    }
 
-        boolean esAvanza() {
-            return tokenActual.lexemasIguales("TK_AVANZA");
-        }
-
-        boolean esPinta() {
-            return tokenActual.lexemasIguales("TK_PINTA");
-        }
-
-        boolean esID() {
-            return tokenActual.lexemasIguales("TK_ID");
-        }
-
-        boolean esAsignacion() {
-            return tokenActual.lexemasIguales("TK_ASIGN");
-        }
-
-        boolean esColor() {
-            return tokenActual.lexemasIguales("TK_COLOR");
-        }
-
-        boolean esCondicional() {
-            return tokenActual.lexemasIguales("TK_SI");
-        }
-
-        boolean esSalto() {
-            return tokenActual.lexemasIguales("TK_IR_A");
-        }
+    boolean esDivision() {
+        return tokenActual.lexemasIguales("TK_DIV");
+    }
 
         //</editor-fold>
-        
-        //<editor-fold defaultstate="collapsed" desc="EXP">
-        boolean esNumero() {
-            return tokenActual.lexemasIguales("TK_CTE_NUM");
-        }
-        
-        boolean esNumeroD() {
-            return tokenActual.lexemasIguales("TK_NOTCNTF");
-        }
+    //<editor-fold defaultstate="collapsed" desc="Expresiones booleanas">
+    boolean esAndOr() {
+        return esAnd() || esOr();
+    }
 
-        boolean esParentesisAbierto() {
-            return tokenActual.lexemasIguales("TK_PAR_ABR");
-        }
+    boolean esNot() {
+        return tokenActual.lexemasIguales("TK_NOT");
+    }
 
-        boolean esParentesisCerrado() {
-            return tokenActual.lexemasIguales("TK_PAR_CER");
-        }
+    boolean esAnd() {
+        return tokenActual.lexemasIguales("TK_AND");
+    }
 
-        //</editor-fold>
-        
-        //<editor-fold defaultstate="collapsed" desc="COLOR">
-        boolean esNegro() {
-            return tokenActual.lexemasIguales("TK_NEGRO");
-        }
-
-        boolean esVerde() {
-            return tokenActual.lexemasIguales("TK_VERDE");
-        }
-
-        boolean esNaranja() {
-            return tokenActual.lexemasIguales("TK_NARANJA");
-        }
-
-        boolean esRosa() {
-            return tokenActual.lexemasIguales("TK_ROSA");
-        }
-
-        boolean esRojo() {
-            return tokenActual.lexemasIguales("TK_ROJO");
-        }
-
-        boolean esBlanco() {
-            return tokenActual.lexemasIguales("TK_BLANCO");
-        }
-
-        boolean esAmarillo() {
-            return tokenActual.lexemasIguales("TK_AMARILLO");
-        }
-
-        boolean esMagenta() {
-            return tokenActual.lexemasIguales("TK_MAGENTA");
-        }
+    boolean esOr() {
+        return tokenActual.lexemasIguales("TK_OR");
+    }
 
         //</editor-fold>
-        
+    //<editor-fold defaultstate="collapsed" desc="PASO">
+    boolean esCasaGiroAvanzaPintaIDColorCondicionalSalto() {
+        return esCasa() || esGiro() || esAvanza() || esPinta() || esID()
+                || esColor() || esCondicional() || esSalto();
+    }
+
+    boolean esEntonces() {
+        return tokenActual.lexemasIguales("TK_ENTONCES");
+    }
+
+    boolean esCasa() {
+        return tokenActual.lexemasIguales("TK_CASA");
+    }
+
+    boolean esGiro() {
+        return tokenActual.lexemasIguales("TK_GIRO");
+    }
+
+    boolean esAvanza() {
+        return tokenActual.lexemasIguales("TK_AVANZA");
+    }
+
+    boolean esPinta() {
+        return tokenActual.lexemasIguales("TK_PINTA");
+    }
+
+    boolean esID() {
+        return tokenActual.lexemasIguales("TK_ID");
+    }
+
+    boolean esAsignacion() {
+        return tokenActual.lexemasIguales("TK_ASIGN");
+    }
+
+    boolean esColor() {
+        return tokenActual.lexemasIguales("TK_COLOR");
+    }
+
+    boolean esCondicional() {
+        return tokenActual.lexemasIguales("TK_SI");
+    }
+
+    boolean esSalto() {
+        return tokenActual.lexemasIguales("TK_IR_A");
+    }
+
+        //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="EXP">
+    boolean esNumero() {
+        return tokenActual.lexemasIguales("TK_CTE_NUM");
+    }
+
+    boolean esNumeroD() {
+        return tokenActual.lexemasIguales("TK_NOTCNTF");
+    }
+
+    boolean esParentesisAbierto() {
+        return tokenActual.lexemasIguales("TK_PAR_ABR");
+    }
+
+    boolean esParentesisCerrado() {
+        return tokenActual.lexemasIguales("TK_PAR_CER");
+    }
+
+        //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="COLOR">
+    boolean esNegro() {
+        return tokenActual.lexemasIguales("TK_NEGRO");
+    }
+
+    boolean esVerde() {
+        return tokenActual.lexemasIguales("TK_VERDE");
+    }
+
+    boolean esNaranja() {
+        return tokenActual.lexemasIguales("TK_NARANJA");
+    }
+
+    boolean esRosa() {
+        return tokenActual.lexemasIguales("TK_ROSA");
+    }
+
+    boolean esRojo() {
+        return tokenActual.lexemasIguales("TK_ROJO");
+    }
+
+    boolean esBlanco() {
+        return tokenActual.lexemasIguales("TK_BLANCO");
+    }
+
+    boolean esAmarillo() {
+        return tokenActual.lexemasIguales("TK_AMARILLO");
+    }
+
+    boolean esMagenta() {
+        return tokenActual.lexemasIguales("TK_MAGENTA");
+    }
+
+        //</editor-fold>
     //</editor-fold>      
-    
     double devolverTabla(String nombreID) {
         Set<Map.Entry<String, Double>> entrySet = tablaIdentificadores.entrySet();
         for (Map.Entry<String, Double> entry : entrySet) {
@@ -720,8 +680,7 @@ public class Interpreter {
                 aux = aux + 1;
             }
             return mapaLineas.size() >= nLinea;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }

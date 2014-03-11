@@ -45,8 +45,7 @@ public class Canvas extends JPanel {
             try {
                 interprete.interpretar(instrucciones);
                 Window.ponerAnalizarAceptado();
-            }
-            catch (RuntimeException ei) {
+            } catch (RuntimeException ei) {
                 Window.ponerAnalizarFallido(ei.getLocalizedMessage());
                 //Si encuentra fallo, borra todo lo ejecutado
                 this.redraw(new LinkedList<Token>());

@@ -7,5 +7,5 @@ public class ParenthesisException extends SyntaxException {
     public ParenthesisException(String string) {
         super(string);
     }
-    
+
 }

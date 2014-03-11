@@ -48,47 +48,33 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 0
                     if (Pattern.compile(del).matcher(tokenLectura).matches()) {
                         estado = 0;
-                    }
-                    else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
                         estado = 1;
-                    }
-                    else if (tokenLectura.compareTo("{") == 0) {
+                    } else if (tokenLectura.compareTo("{") == 0) {
                         estado = 5;
-                    }
-                    else if (tokenLectura.compareTo("}") == 0) {
+                    } else if (tokenLectura.compareTo("}") == 0) {
                         estado = 6;
-                    }
-                    else if (tokenLectura.compareTo("$") == 0) {
+                    } else if (tokenLectura.compareTo("$") == 0) {
                         estado = 9;
-                    }
-                    else if (tokenLectura.compareTo("(") == 0) {
+                    } else if (tokenLectura.compareTo("(") == 0) {
                         estado = 14;
-                    }
-                    else if (tokenLectura.compareTo(")") == 0) {
+                    } else if (tokenLectura.compareTo(")") == 0) {
                         estado = 15;
-                    }
-                    else if (tokenLectura.compareTo("=") == 0) {
+                    } else if (tokenLectura.compareTo("=") == 0) {
                         estado = 7;
-                    }
-                    else if (tokenLectura.compareTo("+") == 0) {
+                    } else if (tokenLectura.compareTo("+") == 0) {
                         estado = 8;
-                    }
-                    else if (tokenLectura.compareTo("<") == 0) {
+                    } else if (tokenLectura.compareTo("<") == 0) {
                         estado = 10;
-                    }
-                    else if (Pattern.compile(N).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 16;
-                    }
-                    else if (tokenLectura.compareTo("/") == 0) {
+                    } else if (tokenLectura.compareTo("/") == 0) {
                         estado = 24;
-                    }
-                    else if (tokenLectura.compareTo("-") == 0) {
+                    } else if (tokenLectura.compareTo("-") == 0) {
                         estado = 30;
-                    }
-                    else if (tokenLectura.compareTo("*") == 0) {
+                    } else if (tokenLectura.compareTo("*") == 0) {
                         estado = 32;
-                    }
-                    else if (tokenLectura.compareTo(">") == 0) {
+                    } else if (tokenLectura.compareTo(">") == 0) {
                         estado = 35;
                     }
                     break;
@@ -100,11 +86,9 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 1
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 3;
-                    }
-                    else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
                         estado = 1;
-                    }
-                    else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
                         estado = 2;
                     }
                     break;
@@ -124,11 +108,9 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 3
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 3;
-                    }
-                    else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
                         estado = 3;
-                    }
-                    else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
                         estado = 4;
                     }
                     break;
@@ -161,8 +143,7 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 7 
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 11;
-                    }
-                    else if (tokenLectura.compareTo("=") == 0) {
+                    } else if (tokenLectura.compareTo("=") == 0) {
                         estado = 39;
                     }
                     break;
@@ -189,11 +170,9 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 10
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 13;
-                    }
-                    else if (tokenLectura.compareTo(">") == 0) {
+                    } else if (tokenLectura.compareTo(">") == 0) {
                         estado = 37;
-                    }
-                    else if (tokenLectura.compareTo("=") == 0) {
+                    } else if (tokenLectura.compareTo("=") == 0) {
                         estado = 42;
                     }
                     break;
@@ -244,11 +223,9 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 16 
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 16;
-                    }
-                    else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
                         estado = 17;
-                    }
-                    else if (tokenLectura.compareTo(".") == 0) {
+                    } else if (tokenLectura.compareTo(".") == 0) {
                         estado = 18;
                         tokenLectura = valor + tokenLectura;
                     }
@@ -271,14 +248,11 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 18 
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 18;
-                    }
-                    else if (Pattern.compile(E).matcher(tokenLectura).matches()) {	// + o -
+                    } else if (Pattern.compile(E).matcher(tokenLectura).matches()) {	// + o -
                         estado = 19;
-                    }
-                    else if (tokenLectura.compareToIgnoreCase("E") == 0) {
+                    } else if (tokenLectura.compareToIgnoreCase("E") == 0) {
                         estado = 20;
-                    }
-                    else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
                         estado = 22;
                     }
                     break;
@@ -290,8 +264,7 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 19
                     if (tokenLectura.compareToIgnoreCase("E") == 0) {
                         estado = 20;
-                    }
-                    else if (Pattern.compile(N).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 19;
                     }
                     break;
@@ -314,8 +287,7 @@ public class LexicalAnalyzer {
                     if (Pattern.compile(del1).matcher(tokenLectura).matches()) {
                         estado = 22;
                         break;
-                    }
-                    else if (Pattern.compile(N).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 21;
                     }
                     break;
@@ -329,9 +301,7 @@ public class LexicalAnalyzer {
                     break;
                 }
 
-
                 // COMENTARIOS EN C
-
                 case 24: {
                     // Acciones semánticas del estado 18 
                     ConcatenarCaracter(tokenLectura);
@@ -339,11 +309,9 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 18 
                     if (tokenLectura.compareTo("*") == 0) {
                         estado = 25;
-                    }
-                    else if (tokenLectura.compareTo("/") == 0) {
+                    } else if (tokenLectura.compareTo("/") == 0) {
                         estado = 29;
-                    }
-                    else {  //¿ES DIVISIÓN?
+                    } else {  //¿ES DIVISIÓN?
                         estado = 34;
                     }
                     break;
@@ -355,11 +323,9 @@ public class LexicalAnalyzer {
                     // Transiciones desde el estado 19 
                     if (Pattern.compile(N).matcher(tokenLectura).matches()) {
                         estado = 25;
-                    }
-                    else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
+                    } else if (Pattern.compile(L).matcher(tokenLectura).matches()) {
                         estado = 25;
-                    }
-                    else if (tokenLectura.compareTo("*") == 0) {
+                    } else if (tokenLectura.compareTo("*") == 0) {
                         estado = 26;
                     }
                     break;
@@ -441,8 +407,7 @@ public class LexicalAnalyzer {
                     // Transicioens desde el estado 35
                     if (Pattern.compile(del2).matcher(tokenLectura).matches()) {
                         estado = 36;
-                    }
-                    else if (tokenLectura.compareTo("=") == 0) {
+                    } else if (tokenLectura.compareTo("=") == 0) {
                         estado = 41;
                     }
                     break;
@@ -507,7 +472,7 @@ public class LexicalAnalyzer {
             }//END switch.
         }//END while.
         listaTokens.add(new Token("TK_SALIDA", "$EOF$")); //Añado el fin de fichero
-        for(Token tt: listaTokens){
+        for (Token tt : listaTokens) {
             System.out.println(tt);
         }
         return listaTokens;
@@ -546,7 +511,7 @@ public class LexicalAnalyzer {
     private String DaLexema() {
         return tokenActual;
     }
-    
+
     private void meterPalabrasReservadas(String... s) {
         palabrasReservadas.addAll(Arrays.asList(s));
     }
@@ -555,8 +520,7 @@ public class LexicalAnalyzer {
         puntero++;
         try {
             return lineaCodigo.charAt(puntero) + "";
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return fin;
         }
     }
@@ -569,8 +533,7 @@ public class LexicalAnalyzer {
         int i = 0;
         try {
             i = Integer.parseInt(cadena);
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new LexicalException("Error al parsear numero");
         }
         return i;

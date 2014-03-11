@@ -55,15 +55,13 @@ public class Production {
         Production p = null;
         try {
             p = (Production) o;
-        }
-        catch (ClassCastException c) {
+        } catch (ClassCastException c) {
             System.err.println("Error de casteo.");
         }
         boolean consecuentesIguales = true;
         if (p.getConsecuente().size() != this.getConsecuente().size()) {
             consecuentesIguales = false;
-        }
-        else {
+        } else {
             for (int i = 0; i < this.getConsecuente().size(); i++) {
                 if (!this.getConsecuente().get(i).equals(p.getConsecuente().get(i))) {
                     consecuentesIguales = false;
@@ -82,7 +80,7 @@ public class Production {
     }
 
     @Override
-    public Production clone() {
+    public Production clone() throws CloneNotSupportedException {
         return new Production(getAntecedente().clone(), clonarConsecuentes(getConsecuente()));
     }
 
@@ -93,8 +91,7 @@ public class Production {
                 VN transf = (VN) cons;
                 VN copia = transf.clone();
                 toReturn.add(copia);
-            }
-            else {
+            } else {
                 VT transf = (VT) cons;
                 VT copia = transf.clone();
                 toReturn.add(copia);
@@ -112,8 +109,7 @@ public class Production {
                 if (!interno.get(i).equals(externo.get(i))) {
                     return false;
                 }
-            }
-            catch (Exception ee) {
+            } catch (Exception ee) {
                 return false;
             }
         }

@@ -26,7 +26,6 @@ public class Grammar {
         this.simbInicial = simbInicial;
     }
 
-    
     public Grammar(String path) throws IOException {
         this.path = path;
         //Inicialización de variables.
@@ -37,7 +36,6 @@ public class Grammar {
         simbInicial = new VN();
 
         //Lectura de fichero.
-
         FileReader lF = new FileReader(path);
         lF.analizarFichero(listaVN, listaVT, producciones, simbInicial);
 
@@ -84,23 +82,23 @@ public class Grammar {
                 + "\nProducciones:\n" + mostrarProducciones()
                 + "Simbolo inicial: " + simbInicial.toString());
     }
-    
-    private String devolverConsecuente (Collection<V> cons) {
+
+    private String devolverConsecuente(Collection<V> cons) {
         String aux = "";
-        for (V vv: cons) {
+        for (V vv : cons) {
             aux += " " + vv + "";
         }
         aux = aux.substring(1);
         return aux;
     }
-    
+
     private String mostrarProducciones() {
         String toReturn = "";
         for (VN v : listaVN) {
             Collection<Collection<V>> consecuentes = this.devolverConsecuentes(v);
             toReturn += v + " -> ";
             int fin = consecuentes.size() - 1;
-            for(Collection<V> cons: consecuentes) {
+            for (Collection<V> cons : consecuentes) {
                 toReturn += devolverConsecuente(cons);
                 if (fin != 0) {
                     toReturn += "|";
@@ -136,20 +134,19 @@ public class Grammar {
         }
         return l;
     }
-    
-    
+
     public void addProduccion(int i, Production p) {
-        ((ArrayList<Production>)this.producciones).add(i, p);
+        ((ArrayList<Production>) this.producciones).add(i, p);
     }
-    
-    public void addVN (VN v) {
+
+    public void addVN(VN v) {
         this.listaVN.add(v);
     }
-    
-    public void addVT (VT v) {
+
+    public void addVT(VT v) {
         this.listaVT.add(v);
     }
-    
+
     public String getPath() {
         return path;
     }

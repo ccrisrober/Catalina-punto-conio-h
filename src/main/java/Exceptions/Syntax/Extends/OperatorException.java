@@ -7,5 +7,5 @@ public class OperatorException extends SyntaxException {
     public OperatorException(String string) {
         super(string);
     }
-    
+
 }

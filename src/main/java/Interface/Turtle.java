@@ -14,10 +14,11 @@ public class Turtle {
     private Point pos;
     private double angle;
     private boolean penDown;
-    private Graphics g;
+    private final Graphics g;
 
     /**
      * Constructor for objects of class Tortuga
+     * @param g
      */
     public Turtle(Graphics g) {
         this.g = g;

@@ -35,7 +35,7 @@ public class FileReader {
     /**
      * Utilizado en la Práctica 3.
      *
-     * @param lineas
+     * @return 
      */
     public List<String> devolverLineas() {
 
@@ -53,11 +53,9 @@ public class FileReader {
                 }
             }
 
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             throw new IOException("Error de parseo");
-        }
-        finally {
+        } finally {
             return lineas;
         }
 
@@ -70,6 +68,7 @@ public class FileReader {
      * @param listaVT
      * @param producciones
      * @param simbInicial
+     * @throws java.io.IOException
      */
     public void analizarFichero(Collection<VN> listaVN, Collection<VT> listaVT, Collection<Production> producciones, VN simbInicial) throws IOException {
 
@@ -81,11 +80,9 @@ public class FileReader {
             String aux;
             String[] split;
 
-
-            aux = br.readLine(); //Línea que describe la gramática
+            br.readLine(); //Línea que describe la gramática
 
             //Tratamos VN.
-
             aux = br.readLine(); //Línea de VN.
             String fragmento_VN = aux.substring(6, aux.length() - 1);
             split = fragmento_VN.split(", ");
@@ -94,7 +91,6 @@ public class FileReader {
             }
 
             //Tratamos VT.
-
             aux = br.readLine(); //Línea de VT.
             String linea_VT = aux.substring(6, aux.length() - 1);
             split = linea_VT.split(", ");
@@ -103,8 +99,7 @@ public class FileReader {
             }
 
             //Tratamos P.
-
-            aux = br.readLine(); //Línea de P.
+            br.readLine(); //Línea de P.
 
             while ((aux = br.readLine()).compareTo("}") != 0) {
                 if (!aux.startsWith("//") && aux.length() != 0) {
@@ -116,13 +111,11 @@ public class FileReader {
             }
 
             //Tratamos S.
-
             aux = br.readLine(); //Línea de S.
             String simI = aux.substring(4);
             simbInicial.setV(simI);
 
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             throw new IOException("Error de parseo");
         }
 
@@ -131,13 +124,11 @@ public class FileReader {
     private List<V> analizarConsecuentes(String consecuentes, Collection<VN> listaVN, Collection<VT> listaVT) {
         List<V> toReturn = new ArrayList<V>();
         String[] sp = consecuentes.split(" ");
-        for (int i = 0; i < sp.length; i++) {
-            String c = sp[i];//consecuentes.charAt(i);
+        for (String c : sp) {
             if (esTerminal(c, listaVN, listaVT)) {
                 VT consecuente = new VT(c + "");
                 toReturn.add(consecuente);
-            }
-            else {
+            } else {
                 toReturn.add(new VN(c + ""));
             }
         }
@@ -156,6 +147,7 @@ public class FileReader {
      * @param listaVT
      * @param producciones
      * @param simbInicial
+     * @throws java.io.IOException
      */
     public void analizarFicheroPR_10(Collection<VN> listaVN, Collection<VT> listaVT, Collection<Production> producciones, VN simbInicial) throws IOException {
 
@@ -167,11 +159,9 @@ public class FileReader {
             String aux;
             String[] split;
 
-
-            aux = br.readLine(); //Línea que describe la gramática
+            br.readLine(); //Línea que describe la gramática
 
             //Tratamos VN.
-
             aux = br.readLine(); //Línea de VN.
             String fragmento_VN = aux.substring(6, aux.length() - 1);
             split = fragmento_VN.split(", ");
@@ -180,7 +170,6 @@ public class FileReader {
             }
 
             //Tratamos VT.
-
             aux = br.readLine(); //Línea de VT.
             String linea_VT = aux.substring(6, aux.length() - 1);
             split = linea_VT.split(", ");
@@ -189,8 +178,7 @@ public class FileReader {
             }
 
             //Tratamos P.
-
-            aux = br.readLine(); //Línea de P.
+            br.readLine(); //Línea de P.
 
             while ((aux = br.readLine()).compareTo("}") != 0) {
                 if (!aux.startsWith("//") && aux.length() != 0) {
@@ -202,13 +190,11 @@ public class FileReader {
             }
 
             //Tratamos S.
-
             aux = br.readLine(); //Línea de S.
             String simI = aux.substring(4);
             simbInicial.setV(simI);
 
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             throw new IOException("Error de parseo");
         }
 
@@ -218,7 +204,7 @@ public class FileReader {
      * Utilizado en la Práctica 10.
      *
      * @return List<String>
-     */
+     * @throws java.io.IOException*/
     public List<String> devolverProducciones() throws IOException {
         try {
 
@@ -228,15 +214,15 @@ public class FileReader {
             String aux;
 
             br.readLine();
-            
+
             //Saltamos VN.
-            aux = br.readLine(); //Línea de VN.
+            br.readLine(); //Línea de VN.
 
             //Saltamos VT.
-            aux = br.readLine(); //Línea de VT.
+            br.readLine(); //Línea de VT.
 
             //Tratamos P.
-            aux = br.readLine(); //Línea de P.
+            br.readLine(); //Línea de P.
 
             List<String> listaProducciones = new ArrayList<String>();
             while ((aux = br.readLine()).compareTo("}") != 0) {
@@ -244,28 +230,26 @@ public class FileReader {
             }
 
             //Saltamos S.
-            aux = br.readLine(); //Línea de S.
+            br.readLine(); //Línea de S.
 
             return listaProducciones;
 
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             throw new IOException("Error de parseo");
         }
     }
-    
-    public String[] palabrasReservadas () throws IOException {
+
+    public String[] palabrasReservadas() throws IOException {
         try {
 
             FileInputStream file = new FileInputStream(this.path);
             InputStreamReader isr = new InputStreamReader(file, "UTF-8");
             BufferedReader br = new BufferedReader(isr);
-            
+
             String aux = br.readLine().substring(1);
             String[] split = aux.split(", ");
             return split;
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             throw new IOException("Error de parseo");
         }
     }
