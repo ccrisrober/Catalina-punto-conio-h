@@ -50,6 +50,9 @@ public class Token extends VT {
 
     @Override
     public boolean equals(Object o) {
+        if(o == null) {
+            return false;
+        }
         Token t = null;
         try {
             t = (Token) o;

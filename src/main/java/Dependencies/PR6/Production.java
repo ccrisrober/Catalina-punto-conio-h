@@ -52,6 +52,9 @@ public class Production {
 
     @Override
     public boolean equals(Object o) {
+        if(o == null) {
+            return false;
+        }
         Production p = null;
         try {
             p = (Production) o;
@@ -80,7 +83,7 @@ public class Production {
     }
 
     @Override
-    public Production clone() throws CloneNotSupportedException {
+    public Production clone() {
         return new Production(getAntecedente().clone(), clonarConsecuentes(getConsecuente()));
     }
 

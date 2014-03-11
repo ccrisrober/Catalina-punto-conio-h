@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileReader {
 
@@ -54,10 +56,14 @@ public class FileReader {
             }
 
         } catch (IOException e) {
-            throw new IOException("Error de parseo");
-        } finally {
-            return lineas;
+            try {
+                throw new IOException("Error de parseo");
+            } catch (IOException ex) {
+                Logger.getLogger(FileReader.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        return lineas;
+        //}
 
     }
 

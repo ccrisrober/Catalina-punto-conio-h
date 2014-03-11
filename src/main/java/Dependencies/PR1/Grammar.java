@@ -77,10 +77,10 @@ public class Grammar {
     //Métodos.
     @Override
     public String toString() {
-        return ("Lista de simbolos no terminales:\n" + listaVN.toString()
+        return "Lista de simbolos no terminales:\n" + listaVN.toString()
                 + "\nLista de simbolos terminales:\n" + listaVT.toString()
                 + "\nProducciones:\n" + mostrarProducciones()
-                + "Simbolo inicial: " + simbInicial.toString());
+                + "Simbolo inicial: " + simbInicial.toString();
     }
 
     private String devolverConsecuente(Collection<V> cons) {

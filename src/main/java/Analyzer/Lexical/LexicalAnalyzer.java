@@ -274,7 +274,9 @@ public class LexicalAnalyzer {
                     ConcatenarCaracter(tokenLectura);
                     tokenLectura = LeerSiguienteCaracter();
                     // Transiciones desde el estado 20
-                    if ((tokenLectura.compareTo("+") == 0) || (tokenLectura.compareTo("-") == 0) || (Pattern.compile(N).matcher(tokenLectura)).matches()) {
+                    if ((tokenLectura.compareTo("+") == 0) ||
+                            (tokenLectura.compareTo("-") == 0) ||
+                            (Pattern.compile(N).matcher(tokenLectura)).matches()) {
                         estado = 21;
                     }
                     break;
@@ -352,9 +354,6 @@ public class LexicalAnalyzer {
                     //Acciones semánticas del estado 29
                     ConcatenarCaracter(tokenLectura);
                     tokenLectura = LeerSiguienteCaracter();
-                    if (tokenLectura.compareTo(fin) == 0) {
-                        //DaToken("TK_COMENTARIO", tokenActual);
-                    }
                     //Transiciones desde el estado 29
                     //estado = 29; //Creo que no hace falta
                     break;

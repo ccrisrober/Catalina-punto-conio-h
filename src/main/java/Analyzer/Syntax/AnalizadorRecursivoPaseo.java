@@ -14,17 +14,41 @@ import java.util.List;
 
 public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
 
+    /**
+     *
+     */
     protected Token tokenActual;
+
+    /**
+     *
+     */
     protected List<Token> listaTokens;
+
+    /**
+     *
+     */
     protected int posicion;
+
+    /**
+     *
+     */
     protected int nLinea;
 
+    /**
+     *
+     * @param g
+     */
     public AnalizadorRecursivoPaseo(Grammar g) {
         super(g);
         posicion = 0;
         nLinea = 0;
     }
 
+    /**
+     *
+     * @param listaTks
+     * @return
+     */
     @Override
     public boolean analizar(Collection<VT> listaTks) {
         this.listaTokens = (List) listaTks;
@@ -335,8 +359,6 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
         ++posicion;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Comparaciones">
-        //<editor-fold defaultstate="collapsed" desc="COMPARADORS">
     boolean esComparador() {
         return esMayor() || esMenor() || esDistinto() || esComparacion() || esMayorIgual() || esMenorIgual();
     }
@@ -365,8 +387,6 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
         return tokenActual.lexemasIguales("TK_MENOR_IGUAL");
     }
 
-        //</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="Aritmética">
     boolean esMasMenos() {
         return esMas() || esMenos();
     }
@@ -403,8 +423,6 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
         return tokenActual.lexemasIguales("TK_DIV");
     }
 
-        //</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="Expresiones booleanas">
     boolean esAndOr() {
         return esAnd() || esOr();
     }
@@ -421,8 +439,6 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
         return tokenActual.lexemasIguales("TK_OR");
     }
 
-        //</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="PASO">
     boolean esCasaGiroAvanzaPintaIDColorCondicionalSalto() {
         return esCasa() || esGiro() || esAvanza() || esPinta() || esID()
                 || esColor() || esCondicional() || esSalto();
@@ -468,8 +484,6 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
         return tokenActual.lexemasIguales("TK_IR_A");
     }
 
-        //</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="EXP">
     boolean esNumero() {
         return tokenActual.lexemasIguales("TK_CTE_NUM");
     }
@@ -486,8 +500,6 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
         return tokenActual.lexemasIguales("TK_PAR_CER");
     }
 
-        //</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="COLOR">
     boolean esNegro() {
         return tokenActual.lexemasIguales("TK_NEGRO");
     }
@@ -519,7 +531,4 @@ public class AnalizadorRecursivoPaseo extends SyntaxAnalyzer {
     boolean esMagenta() {
         return tokenActual.lexemasIguales("TK_MAGENTA");
     }
-
-        //</editor-fold>
-    //</editor-fold>      
 }
